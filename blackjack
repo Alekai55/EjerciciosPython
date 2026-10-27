@@ -1,0 +1,33 @@
+# Prueba del pseudocódigo de BlackJack
+mano1 = ['A','J']
+mano2 = ['Q','K','2']
+
+
+def comparadorManos(mano1, mano2):
+    resultadoMano1 = calcularMano(mano1)
+    resultadoMano2 = calcularMano(mano2)
+    return (resultadoMano1 <= 21 and (resultadoMano1 >resultadoMano2 or resultadoMano2 > 21))
+        
+    
+def calcularMano(mano):
+    total = 0
+    ases = 0
+    for carta in mano:
+        if carta == 'J' or carta == 'Q' or carta == 'K':
+            total +=10
+        elif carta == 'A':
+            ases +=1
+        else:
+            total += int(carta)
+    total += ases     
+    
+    while (total +10 <=21) and ases > 0:
+        total += 10
+        ases -=1
+        
+    return total
+    
+print(calcularMano(mano1)) 
+
+print(calcularMano(mano2))
+print(comparadorManos(mano1, mano2))
